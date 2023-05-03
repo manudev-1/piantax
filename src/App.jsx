@@ -72,7 +72,7 @@ export function App() {
         </section>
       </div>
       <section className="mt-24 flex flex-col items-center max-w-xs text-center text-text font-calibri text-base xl:text-lg xl:mt-16 xl:max-w-lg">
-        <h1 className="font-cocoGoose text-3xl text-title xl:text-8xl">BOTANY</h1>
+        <h1 className="font-cocoGoose text-4xl text-title xl:text-8xl">BOTANY</h1>
         <p>Look for the plant that has attracted your attention and discover its details or find out how to cure yours.</p>
         <section className="mt-16 max-w-lg flex">
             <input type="text" name="plant" id="query" className="w-72 h-10 rounded-full p-5 outline-none capitalize xl:w-96" placeholder="Write the name of a plant..." maxLength="25" onInput={handleChange} value={query}/>
