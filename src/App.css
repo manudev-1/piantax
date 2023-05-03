@@ -1,0 +1,9 @@
+@font-face {
+  font-family: cocoGoose;
+  src: url(./fonts/CocogoosePro-trial.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: calibri;
+  src: url(./fonts/CalibriRegular.ttf) format('truetype');
+}
