@@ -60,15 +60,15 @@ export function App() {
   } // * End handleSingle
 
   return (
-    <div className={`App ${datas.length > 0 ? 'h-fit' : 'h-screen'} w-full flex justify-center bg-backG`}>
+    <div className={`App ${datas.length > 1 ? 'h-fit' : 'h-screen'} w-full flex justify-center bg-backG`}>
       <div className="fixed w-full h-screen pointer-events-none flex flex-col justify-between xl:h-fit xl:block">
         <section className="flex justify-between items-start">
-            <img src={sxPlant} alt="sx Plant" className="w-1/3 xl:w-1/5" />
-            <img src={dxPlant} alt="dx Plant" className="w-1/3 xl:w-1/5" />
+            <img src={sxPlant} alt="sx Plant" className="w-1/4 xl:w-1/5" />
+            <img src={dxPlant} alt="dx Plant" className="w-1/4 xl:w-1/5" />
         </section>
         <section className="flex justify-between items-baseline">
-            <img src={sxMenso} alt="sx Men" className="w-1/3 xl:w-1/5" />
-            <img src={dxMenso} alt="dx Men" className="w-1/3 xl:w-1/5" />
+            <img src={sxMenso} alt="sx Men" className="w-1/4 xl:w-1/5" />
+            <img src={dxMenso} alt="dx Men" className="w-1/4 xl:w-1/5" />
         </section>
       </div>
       <section className="mt-24 flex flex-col items-center max-w-xs text-center text-text font-calibri text-base xl:text-lg xl:mt-16 xl:max-w-lg">
@@ -80,10 +80,10 @@ export function App() {
         </section>
         <div className="">
           {
-            datas.map((data) => {
+            datas.map((data) => {        
               return(
                 <section key={data.id} className="mt-10 bg-white w-60 h-60 rounded-xl overflow-hidden text-left hover:shadow-2xl duration-500 xl:w-96 xl:h-96">
-                  <img src={data.default_image.original_url === 'https://perenual.com/storage/species_image/2_abies_alba_pyramidalis/og/49255769768_df55596553_b.jpg' ? defaultNotProvided : data.default_image.original_url} alt={`${data.id} Plant`} className="h-4/6 w-full object-cover"/>
+                  <img src={data.default_image === null || data.default_image.original_url === null ? defaultNotProvided : data.default_image.original_url} alt={`${data.id} Plant`} className="h-4/6 w-full object-cover"/>
                   <div className="p-2 h-2/6 flex flex-col justify-between items-start">
                     <section className='w-full'>
                       <h1>{data.common_name}</h1>
@@ -99,21 +99,23 @@ export function App() {
                           <div className="h-1 w-5 rounded-xl bg-title m-1 -rotate-45 -translate-y-1"></div>
                         </div>
                         <div className="w-full h-1/3 pl-5 pt-5 bg-backG">
-                          <img src={data.default_image.small_url === 'https://perenual.com/storage/species_image/2_abies_alba_pyramidalis/small/49255769768_df55596553_b.jpg' ? defaultNotProvided : data.default_image.small_url} alt={data.default_image.small_url} className='w-1/3 h-[calc(100%+20px)] object-cover rounded-lg xl:w-1/6 xl:h-[calc(100% + 1rem)]'/>
+                          <img src={data.default_image === null || data.default_image.small_url === null ? defaultNotProvided : data.default_image.small_url} alt={`${data.id} Plant`} className='w-1/3 h-[calc(100%+20px)] object-cover rounded-lg xl:w-1/6 xl:h-[calc(100% + 1rem)]'/>
                         </div>
                         <div className="flex justify-between h-2/3">
                           <section className='pt-6 pl-5 font-bold flex flex-col justify-evenly'>
                             <h1>Name: <span className='text-gray-500 font-normal'>{data.common_name}</span></h1>
                             <h1>Cycle: <span className='text-gray-500 font-normal'>{data.cycle}</span></h1>
                             <h1>Scientific Name: <span className='text-gray-500 font-normal'>{data.scientific_name}</span></h1>
-                            <h1 className='flex'>Sunlight: <div className="flex">{
+                            <h1 className='flex'>Sunlight: <div className="flex text-gray-500 font-normal">{ data.sunlight > 1 ?
                               data.sunlight.map((sun, i) => {
                                 return(
                                   <section>
-                                    <h1 className='text-gray-500 font-normal'>&nbsp;{sun}{ i === data.sunlight.length - 1 ? '' : ',\xa0'}</h1>
+                                    <h1>&nbsp;{sun}{ i === data.sunlight.length - 1 ? '' : ',\xa0'}</h1>
                                   </section>
                                 )
                               })
+                              :
+                              `\xa0 ${data.sunlight}`
                               }</div></h1>
                             <h1>Watering: <span className='text-gray-500 font-normal'>{data.watering}</span></h1>
                           </section>
