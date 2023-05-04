@@ -119,7 +119,7 @@ export function App() {
                               }</div></h1>
                             <h1>Watering: <span className='text-gray-500 font-normal'>{data.watering}</span></h1>
                           </section>
-                          {window.innerWidth < 1280 ? <img src={dxMenso} alt="" className='w-56'/> : ''}
+                          {window.innerWidth < 1280 ? '' : <img src={dxMenso} alt="" className='w-56'/>}
                         </div>
                       </section>
                     </div>
