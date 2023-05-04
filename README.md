@@ -50,7 +50,7 @@ To deploy this project run
 
 [Perenual Plant API](https://perenual.com/docs/api)
 
-[Vire React](https://vitejs.dev/guide/)
+[Vite React](https://vitejs.dev/guide/)
 ## Features
 
 - Responsive
