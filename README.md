@@ -17,7 +17,7 @@ Web application with the purpose of allowing the search of home plants
 #### Get item
 
 ```http
-  GET /api/species-list?$key**&**${query}
+  GET /api/species-list?$key&${query}
 ```
 
 | Parameter | Type     | Description                       |
