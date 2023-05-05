@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import sxPlant from './assets/PiantaSinistra.svg';
@@ -20,12 +20,15 @@ export function App() {
 
   const handleReq = async () => {
     try {
-      const response = await axios.request(options);
-      setDatas(response.data.data)
-      handleData
+      if(query !== ''){
+        const response = await axios.request(options);
+        setDatas(response.data.data)
+        handleData
+      } // * End try
+      else setDatas([])
     } catch (error) {
       console.error(error);
-    }
+    } // * End catch
   } // * End handleReq
 
   const handleData = () => {
@@ -59,6 +62,14 @@ export function App() {
     setDatas(list)
   } // * End handleSingle
 
+  // ! Service for Message
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    if(datas.length >= 1) setMessage('')
+    else setMessage('No Datas was Found')
+  })
+
   return (
     <div className={`App ${datas.length > 1 ? 'h-fit' : 'h-screen'} w-full flex justify-center bg-backG`}>
       <div className="fixed w-full h-screen pointer-events-none flex flex-col justify-between xl:h-fit xl:block">
@@ -80,6 +91,7 @@ export function App() {
         </section>
         <div className="">
           {
+            datas.length > 0 ?
             datas.map((data) => {        
               return(
                 <section key={data.id} className="mt-10 bg-white w-60 h-60 rounded-xl overflow-hidden text-left hover:shadow-2xl duration-500 xl:w-96 xl:h-96">
@@ -127,6 +139,8 @@ export function App() {
                 </section>
               )
             }) // * End map
+            :
+            <h1 className='font-bold mt-10'>{message}</h1>
           }
         </div>
       </section>
