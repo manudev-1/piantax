@@ -24,6 +24,7 @@ export function App() {
         const response = await axios.request(options);
         setDatas(response.data.data)
         handleData
+        setSearched(true)
       } // * End try
       else setDatas([])
     } catch (error) {
@@ -64,10 +65,13 @@ export function App() {
 
   // ! Service for Message
   const [message, setMessage] = useState('')
+  const [searched, setSearched] = useState(false)
 
   useEffect(() => {
-    if(datas.length >= 1) setMessage('')
-    else setMessage('No Datas was Found')
+    if(searched){
+      if(datas.length >= 1) setMessage('')
+      else setMessage("No Datas was Found")
+    }
   })
 
   return (
